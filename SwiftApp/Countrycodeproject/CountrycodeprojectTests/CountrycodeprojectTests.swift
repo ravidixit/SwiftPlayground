@@ -78,6 +78,23 @@ class CountrycodeprojectTests: XCTestCase {
             XCTAssertTrue(_resultSet.count>0)
         }
     }
+    
+    func testGetCountryRecords_CheckRecordsForDuplicates() {
+        var _resultSet = [Result]();
+        _manager.GetCountryCodes { (data) in
+            _resultSet = data
+            
+            //Use filters to determine duplicates and add assert calls
+        }
+    }
+    
+    //This test is not actually required but just in case if you working with AnyObject type
+    func testGetCountryRecords_CheckIfRecordsAreOfTypeResults() {
+        
+        _manager.GetCountryCodes { (data) in
+            _ = XCTAssertTrue(((data as? [Result]) != nil))
+        }
+    }
 
     func testExample() {
         // This is an example of a functional test case.
