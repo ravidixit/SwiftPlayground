@@ -9,16 +9,15 @@
 //TODO: Add a protocol to this class
 import Foundation
 
-class DataManager {
-    
-    func GetCountryCodes(completion: @escaping (_ result: [Result]) ->())
+class DataManager : DataManagerProtocol
+{
+    func GetCountryCodes(request:URLRequest,completion: @escaping (_ result: [Result]) ->())
     {
-        URLSession.shared.dataTask(with: URL(string: "http://services.groupkt.com/country/get/all")!)
-        { (data, response, error) in
-            
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+           
             guard let responseData = data else { return }
-            do {
-                
+            do
+            {
                 let parsedData = try JSONSerialization.jsonObject(with: responseData) as! [String:Any]
                 let resultSet = (parsedData["RestResponse"] as! [String:Any])["result"] as! NSArray
                 _=completion(resultSet.ToResultType())
@@ -28,7 +27,6 @@ class DataManager {
             {
                 print(jsonError)
             }
-            
-            }.resume()
+        }.resume()
     }
 }

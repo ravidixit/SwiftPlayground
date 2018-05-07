@@ -14,13 +14,16 @@ class ViewController: UIViewController {
     
     let _manager = DataManager();
     var _resultSet = [Result]();
-    
+   
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         //Get country record
-        _manager.GetCountryCodes { (data) in
+        _manager.GetCountryCodes(request:
+        DataRequest.URLRequestToGetAllCountryCodes())
+        { (data) in
             self._resultSet = data
         }
        
