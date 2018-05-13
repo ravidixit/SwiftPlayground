@@ -27,7 +27,7 @@ class CountrycodeprojectTests: XCTestCase {
     func testGetCountryRecords_CheckNil()
     {
         var _resultSet = [Result]();
-        _manager.GetCountryCodes { (data) in
+        _manager.GetCountryCodes(request: DataRequest.URLRequestToGetAllCountryCodes()) { (data) in
         _resultSet = data
         XCTAssertNil(_resultSet)
         }
@@ -36,7 +36,7 @@ class CountrycodeprojectTests: XCTestCase {
     func testGetCountryCodes_CheckIfAllNamesAreNotNil()
     {
         var _resultSet = [Result]();
-        _manager.GetCountryCodes { (data) in
+        _manager.GetCountryCodes(request: DataRequest.URLRequestToGetAllCountryCodes()) { (data) in
             _resultSet = data
             
             for element in _resultSet
@@ -51,7 +51,7 @@ class CountrycodeprojectTests: XCTestCase {
     func testGetCountryCodes_CheckIfAllISO2CodeAreNotNil()
     {
         var _resultSet = [Result]();
-        _manager.GetCountryCodes { (data) in
+        _manager.GetCountryCodes(request: DataRequest.URLRequestToGetAllCountryCodes()) { (data) in
             _resultSet = data
             for element in _resultSet
             {
@@ -65,7 +65,7 @@ class CountrycodeprojectTests: XCTestCase {
     func testGetCountryCodes_CheckIfListDoesNotHaveDuplicateRecords()
     {
         var _resultSet = [Result]();
-        _manager.GetCountryCodes { (data) in
+        _manager.GetCountryCodes(request: DataRequest.URLRequestToGetAllCountryCodes()) { (data) in
             _resultSet = data
             XCTAssertNil(_resultSet)
         }
@@ -73,7 +73,7 @@ class CountrycodeprojectTests: XCTestCase {
     
     func testGetCountryRecords_CheckCount() {
         var _resultSet = [Result]();
-        _manager.GetCountryCodes { (data) in
+        _manager.GetCountryCodes(request: DataRequest.URLRequestToGetAllCountryCodes()) { (data) in
             _resultSet = data
             XCTAssertTrue(_resultSet.count>0)
         }
@@ -81,7 +81,7 @@ class CountrycodeprojectTests: XCTestCase {
     
     func testGetCountryRecords_CheckRecordsForDuplicates() {
         var _resultSet = [Result]();
-        _manager.GetCountryCodes { (data) in
+        _manager.GetCountryCodes(request: DataRequest.URLRequestToGetAllCountryCodes()) { (data) in
             _resultSet = data
             
             //Use filters to determine duplicates and add assert calls
@@ -91,7 +91,7 @@ class CountrycodeprojectTests: XCTestCase {
     //This test is not actually required but just in case if you working with AnyObject type
     func testGetCountryRecords_CheckIfRecordsAreOfTypeResults() {
         
-        _manager.GetCountryCodes { (data) in
+        _manager.GetCountryCodes(request: DataRequest.URLRequestToGetAllCountryCodes()) { (data) in
             _ = XCTAssertTrue(((data as? [Result]) != nil))
         }
     }

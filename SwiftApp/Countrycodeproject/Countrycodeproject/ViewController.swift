@@ -19,14 +19,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
         //Get country record
+        
         _manager.GetCountryCodes(request:
         DataRequest.URLRequestToGetAllCountryCodes())
         { (data) in
             self._resultSet = data
         }
-       
+        
+       //Do things with your data here
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
